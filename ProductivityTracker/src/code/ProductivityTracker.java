@@ -8,6 +8,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+import javax.swing.SwingConstants;
 
 import code.components.JRounded;
 
@@ -43,6 +44,7 @@ public class ProductivityTracker extends JPanel{
 			JLabel label = new JLabel();
 			JRounded round = new JRounded(label);
 			label.setText(round.getLocation().y+"");
+			label.setHorizontalAlignment(SwingConstants.CENTER);
 			projectEntriesPane.add(round);
 		}
 		projectEntriesPane.repaint();
