@@ -7,15 +7,21 @@ import java.awt.Component;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-public class JRounded extends JPanel{
+public class JRounded extends JPanel implements MouseListener{
 
-	
+	Color currentColor = normalColor;
+	private static Color hoverColor = Color.LIGHT_GRAY.brighter();
+	private static Color normalColor = Color.LIGHT_GRAY;
+	private static Color clickColor = Color.DARK_GRAY;
 	
 	public JRounded(Component contained) {
+		addMouseListener(this);
 		setLayout(new BorderLayout());
 		setBorder( new EmptyBorder( 10, 10, 10, 10 ) );
 		add(contained, BorderLayout.CENTER);
@@ -26,11 +32,42 @@ public class JRounded extends JPanel{
 		super.paintComponent(g);
 		Graphics2D g2 = (Graphics2D) g;
 
-        g2.setPaint(Color.LIGHT_GRAY);
+        g2.setPaint(currentColor);
         g2.setStroke(new BasicStroke(2.0f));
 
-        Rectangle position = getBounds();
         g2.fillRoundRect(5, 0, getWidth()-10, getHeight(), 5, 5);
+	}
+
+	@Override
+	public void mouseClicked(MouseEvent arg0) {
+		
+		
+	}
+
+	@Override
+	public void mouseEntered(MouseEvent arg0) {
+		currentColor = hoverColor;
+		repaint();
+	}
+
+	@Override
+	public void mouseExited(MouseEvent arg0) {
+		currentColor = normalColor;
+		repaint();
+	}
+
+	@Override
+	public void mousePressed(MouseEvent arg0) {
+		currentColor = clickColor;
+		repaint();
+		
+	}
+
+	@Override
+	public void mouseReleased(MouseEvent arg0) {
+		currentColor = normalColor;
+		repaint();
+		
 	}
 	
 }
