@@ -9,11 +9,15 @@ import java.awt.Graphics2D;
 import java.awt.Rectangle;
 
 import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
 
 public class JRounded extends JPanel{
 
+	
+	
 	public JRounded(Component contained) {
 		setLayout(new BorderLayout());
+		setBorder( new EmptyBorder( 10, 10, 10, 10 ) );
 		add(contained, BorderLayout.CENTER);
 	}
 	
@@ -26,7 +30,7 @@ public class JRounded extends JPanel{
         g2.setStroke(new BasicStroke(2.0f));
 
         Rectangle position = getBounds();
-        g2.fillRoundRect(0, 0, getWidth(), getHeight(), 15, 15);
+        g2.fillRoundRect(5, 0, getWidth()-10, getHeight(), 5, 5);
 	}
 	
 }
