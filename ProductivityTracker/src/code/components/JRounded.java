@@ -20,7 +20,11 @@ public class JRounded extends JPanel implements MouseListener{
 	private static Color normalColor = Color.LIGHT_GRAY;
 	private static Color clickColor = Color.DARK_GRAY;
 	
+	public Component inside;
+	
 	public JRounded(Component contained) {
+		inside = contained;
+		inside.setBackground(currentColor);
 		addMouseListener(this);
 		setLayout(new BorderLayout());
 		setBorder( new EmptyBorder( 10, 10, 10, 10 ) );
@@ -47,18 +51,21 @@ public class JRounded extends JPanel implements MouseListener{
 	@Override
 	public void mouseEntered(MouseEvent arg0) {
 		currentColor = hoverColor;
+		inside.setBackground(currentColor);
 		repaint();
 	}
 
 	@Override
 	public void mouseExited(MouseEvent arg0) {
 		currentColor = normalColor;
+		inside.setBackground(currentColor);
 		repaint();
 	}
 
 	@Override
 	public void mousePressed(MouseEvent arg0) {
 		currentColor = clickColor;
+		inside.setBackground(currentColor);
 		repaint();
 		
 	}
@@ -66,6 +73,7 @@ public class JRounded extends JPanel implements MouseListener{
 	@Override
 	public void mouseReleased(MouseEvent arg0) {
 		currentColor = normalColor;
+		inside.setBackground(currentColor);
 		repaint();
 		
 	}

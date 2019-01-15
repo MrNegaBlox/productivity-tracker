@@ -2,6 +2,7 @@ package code;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 import javax.swing.BorderFactory;
@@ -16,9 +17,13 @@ import javax.swing.border.Border;
 import javax.swing.border.EmptyBorder;
 
 import code.components.JRounded;
+import code.components.ProjectPanel;
 
 public class ProductivityTracker extends JPanel{
 
+	Goal testGoal;
+	Project testProject;
+	
 	ArrayList<JRounded> projectEntries = new ArrayList<JRounded>();
 	
 	JScrollPane projectListPane;
@@ -35,6 +40,17 @@ public class ProductivityTracker extends JPanel{
 	}
 	
 	public ProductivityTracker() {
+		testGoal = new Goal();
+		
+		testGoal.goalDescription = "this is a test description";
+		testGoal.creationDate = LocalDate.now();
+		testGoal.dueDate = LocalDate.now();
+		
+		testProject = new Project();
+		testProject.name = "this is a test project";
+		testProject.startDate = LocalDate.now();
+		testProject.goals.add(testGoal);
+		testProject.lastModified = LocalDate.now();
 		
 		setLayout(new BorderLayout());
 		setBorder( new EmptyBorder( 3, 3, 3, 3 ) );
@@ -55,10 +71,8 @@ public class ProductivityTracker extends JPanel{
 		projectEntriesPane.setLayout(new BoxLayout(projectEntriesPane,BoxLayout.Y_AXIS));
 		for(int i = 1; i <= 100; i++)
 		{
-			JLabel label = new JLabel();
+			ProjectPanel label = new ProjectPanel(testProject);
 			JRounded round = new JRounded(label);
-			label.setText(i+"");
-			label.setHorizontalAlignment(SwingConstants.CENTER);
 			projectEntriesPane.add(round);
 			projectEntriesPane.add(Box.createVerticalStrut(10));
 		}

@@ -24,7 +24,12 @@ public class ProjectPanel extends JPanel{
 		add(Box.createVerticalStrut(5));
 		for(Goal g : project.goals)
 		{
-			
+			if(g.isCompleted)continue;
+			add(new JLabel('-' + g.goalDescription));
+			if(g.dueDate != null)
+				add(new JLabel(g.dueDate.toString()));
+			else
+				add(new JLabel(g.creationDate.toString()));
 		}
 	}
 	
