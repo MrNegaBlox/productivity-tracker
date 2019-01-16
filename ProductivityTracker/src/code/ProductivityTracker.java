@@ -2,24 +2,25 @@ package code;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
 import javax.swing.BorderFactory;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
+import javax.swing.JButton;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
-import javax.swing.SwingConstants;
 import javax.swing.border.Border;
 import javax.swing.border.EmptyBorder;
 
 import code.components.JRounded;
 import code.components.ProjectPanel;
 
-public class ProductivityTracker extends JPanel{
+public class ProductivityTracker extends JPanel implements ActionListener{
 
 	Goal testGoal;
 	Project testProject;
@@ -30,6 +31,9 @@ public class ProductivityTracker extends JPanel{
 	
 	JScrollPane projectListPane;
 	JPanel projectEntriesPane;
+	JPanel toolbar;
+	JButton backButton;
+	JButton addButton;
 	
 	public static void main(String[] args) {
 		JFrame frame = new JFrame("Being Productive");
@@ -62,7 +66,6 @@ public class ProductivityTracker extends JPanel{
 		
 		setLayout(new BorderLayout());
 		setBorder(new EmptyBorder( 3, 3, 3, 3 ));
-		//getInsets().set(30, 30, 30, 30);
 		initProjectPane();
 		
 		projectListPane = new JScrollPane(projectEntriesPane,JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
@@ -71,7 +74,27 @@ public class ProductivityTracker extends JPanel{
 		projectListPane.setViewportBorder( border );
 		projectListPane.setBorder( border );
 		projectListPane.setPreferredSize(new Dimension(200,400));
-		add(projectListPane);
+		add(projectListPane,BorderLayout.CENTER);
+		
+		initToolbar();
+		add(toolbar,BorderLayout.NORTH);
+		
+	}
+
+	private void initToolbar() {
+		toolbar = new JPanel();
+		toolbar.setBorder(new EmptyBorder( 0, 0, 5, 0 ));
+		toolbar.setLayout(new BoxLayout(toolbar, BoxLayout.X_AXIS));
+		backButton = new JButton("<");
+		backButton.setActionCommand("back");
+		backButton.addActionListener(this);
+		addButton = new JButton("+");
+		addButton.setActionCommand("add");
+		addButton.addActionListener(this);
+		toolbar.add(backButton);
+		toolbar.add(Box.createHorizontalGlue());
+		toolbar.add(addButton);
+		
 	}
 
 	private void initProjectPane() {
@@ -90,6 +113,16 @@ public class ProductivityTracker extends JPanel{
 			JRounded round = new JRounded(label);
 			projectEntriesPane.add(round);
 			projectEntriesPane.add(Box.createVerticalStrut(10));
+		}
+		
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		switch(e.getActionCommand())
+		{
+		case "back": break;
+		case "add": break;
 		}
 		
 	}
