@@ -2,6 +2,7 @@ package code;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
+import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.time.LocalDate;
@@ -82,15 +83,20 @@ public class ProductivityTracker extends JPanel implements ActionListener{
 	}
 
 	private void initToolbar() {
+		Insets buttonInsets = new Insets(1,10,1,10);
 		toolbar = new JPanel();
 		toolbar.setBorder(new EmptyBorder( 0, 0, 5, 0 ));
 		toolbar.setLayout(new BoxLayout(toolbar, BoxLayout.X_AXIS));
 		backButton = new JButton("<");
 		backButton.setActionCommand("back");
 		backButton.addActionListener(this);
+		backButton.setFont(backButton.getFont().deriveFont(20.0f));	
+		backButton.setMargin(buttonInsets);
 		addButton = new JButton("+");
 		addButton.setActionCommand("add");
 		addButton.addActionListener(this);
+		addButton.setFont(backButton.getFont());
+		addButton.setMargin(buttonInsets);
 		toolbar.add(backButton);
 		toolbar.add(Box.createHorizontalGlue());
 		toolbar.add(addButton);
