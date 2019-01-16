@@ -1,5 +1,7 @@
 package code.components;
 
+import java.awt.Color;
+
 import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.JLabel;
@@ -20,16 +22,27 @@ public class ProjectPanel extends JPanel{
 		project = p;
 		setLayout(new BoxLayout(this,BoxLayout.Y_AXIS));
 		add(new JLabel(project.name));
-		add(new JLabel(project.lastModified.toString()));
+		JLabel projectDateLabel = new JLabel("   "+project.lastModified.toString());
+		projectDateLabel.setFont(projectDateLabel.getFont().deriveFont(10.0f));	
+		add(projectDateLabel);
 		add(Box.createVerticalStrut(5));
 		for(Goal g : project.goals)
 		{
 			if(g.isCompleted)continue;
-			add(new JLabel('-' + g.goalDescription));
+			add(new JLabel("- " + g.goalDescription));
+			JLabel dateLabel = new JLabel("VOID");
+			dateLabel.setFont(dateLabel.getFont().deriveFont(10.0f));
 			if(g.dueDate != null)
-				add(new JLabel(g.dueDate.toString()));
+			{
+				dateLabel.setText("   " + g.dueDate.toString());
+				dateLabel.setForeground(Color.red);
+			}
 			else
-				add(new JLabel(g.creationDate.toString()));
+			{
+				dateLabel.setText("   " + g.creationDate.toString());
+				dateLabel.setForeground(Color.GRAY);
+			}
+			add(dateLabel);
 		}
 	}
 	

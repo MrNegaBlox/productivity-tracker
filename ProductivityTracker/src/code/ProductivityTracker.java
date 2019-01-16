@@ -42,13 +42,15 @@ public class ProductivityTracker extends JPanel{
 	public ProductivityTracker() {
 		testGoal = new Goal();
 		
-		testGoal.goalDescription = "this is a test description";
+		testGoal.goalDescription = "This is a test description";
 		testGoal.creationDate = LocalDate.now();
-		testGoal.dueDate = LocalDate.now();
+		testGoal.dueDate = null;
 		
 		testProject = new Project();
-		testProject.name = "this is a test project";
+		testProject.name = "This is a test project";
 		testProject.startDate = LocalDate.now();
+		testProject.goals.add(testGoal);
+		testProject.goals.add(testGoal);
 		testProject.goals.add(testGoal);
 		testProject.lastModified = LocalDate.now();
 		
