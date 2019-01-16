@@ -14,4 +14,9 @@ public class Project implements Serializable{
 	public LocalDate startDate;
 	public LocalDate lastModified;
 	public ArrayList<Goal> goals = new ArrayList<Goal>();
+	
+	@Override
+	public String toString() {
+		return "Project "+name;
+	}
 }

@@ -15,6 +15,10 @@ import javax.swing.border.EmptyBorder;
 
 public class JRounded extends JPanel implements MouseListener{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	Color currentColor = normalColor;
 	private static Color hoverColor = Color.LIGHT_GRAY.brighter();
 	private static Color normalColor = Color.LIGHT_GRAY;

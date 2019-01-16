@@ -26,6 +26,8 @@ public class ProductivityTracker extends JPanel{
 	
 	ArrayList<JRounded> projectEntries = new ArrayList<JRounded>();
 	
+	ArrayList<Project> projects;
+	
 	JScrollPane projectListPane;
 	JPanel projectEntriesPane;
 	
@@ -40,6 +42,7 @@ public class ProductivityTracker extends JPanel{
 	}
 	
 	public ProductivityTracker() {
+		projects = IOSerialization.readProjects();
 		testGoal = new Goal();
 		
 		testGoal.goalDescription = "This is a test description";
@@ -54,8 +57,11 @@ public class ProductivityTracker extends JPanel{
 		testProject.goals.add(testGoal);
 		testProject.lastModified = LocalDate.now();
 		
+		
+		System.out.println(IOSerialization.readProjects());
+		
 		setLayout(new BorderLayout());
-		setBorder( new EmptyBorder( 3, 3, 3, 3 ) );
+		setBorder(new EmptyBorder( 3, 3, 3, 3 ));
 		//getInsets().set(30, 30, 30, 30);
 		initProjectPane();
 		
@@ -71,9 +77,16 @@ public class ProductivityTracker extends JPanel{
 	private void initProjectPane() {
 		projectEntriesPane = new JPanel();
 		projectEntriesPane.setLayout(new BoxLayout(projectEntriesPane,BoxLayout.Y_AXIS));
-		for(int i = 1; i <= 100; i++)
+//		for(int i = 0; i < 5; i++)
+//		{
+//			ProjectPanel label = new ProjectPanel(testProject);
+//			JRounded round = new JRounded(label);
+//			projectEntriesPane.add(round);
+//			projectEntriesPane.add(Box.createVerticalStrut(10));
+//		}
+		for(Project p : projects)
 		{
-			ProjectPanel label = new ProjectPanel(testProject);
+			ProjectPanel label = new ProjectPanel(p);
 			JRounded round = new JRounded(label);
 			projectEntriesPane.add(round);
 			projectEntriesPane.add(Box.createVerticalStrut(10));
